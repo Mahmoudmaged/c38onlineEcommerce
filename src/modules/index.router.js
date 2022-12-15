@@ -12,7 +12,7 @@ import productRouter from './product/product.router.js'
 import reviewsRouter from './reviews/reviews.router.js'
 import subcategoryRouter from './subcategory/subcategory.router.js'
 import userRouter from './user/user.router.js'
-
+import cors from 'cors'
 
 
 
@@ -21,7 +21,10 @@ export const appRouter = (app) => {
 
     //convert Buffer Data
     app.use(express.json())
-
+    app.use(express.urlencoded({ extended: false }))
+    //setup cors
+    app.use(cors({}))
+    
     // morgan check response
     if (process.env.MOOD === 'DEV') {
         app.use(morgan("dev"))
